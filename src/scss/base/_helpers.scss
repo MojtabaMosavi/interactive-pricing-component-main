@@ -1,0 +1,23 @@
+/*------------------------------*\
+    #helpers 
+\*------------------------------*/
+
+// general container to align the content
+.container {
+  max-width: 33rem;
+  padding: 0 1.5rem;
+}
+
+// show the content only to screen reader
+.sr-only {
+  position: absolute;
+  left: -9999px;
+  height: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.hide {
+  display: none;
+}
