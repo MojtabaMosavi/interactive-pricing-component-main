@@ -1,0 +1,68 @@
+@use "../abstracts" as abs;
+
+/*------------------------------*\
+    #header 
+\*------------------------------*/
+
+.header {
+  position: relative;
+
+  &__headings {
+    padding-top: 5.5rem;
+
+    &::after {
+      content: url("../assets/images/pattern-circles.svg");
+      position: absolute;
+      top: 34%;
+      left: 25%;
+    }
+  }
+
+  &__heading {
+    z-index: 2;
+    position: relative;
+
+    &--h1 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.025rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    &--h2 {
+      font-size: 0.81rem;
+      font-weight: 300;
+      text-align: center;
+      max-width: 11rem;
+      margin: 0 auto;
+      line-height: 1.4rem;
+    }
+  }
+
+  /*------------------------------*\
+    #header tablet 
+  \*------------------------------*/
+
+  @include abs.respond-to("tablet") {
+    &__headings {
+      padding-top: 6.3rem;
+
+      &::after {
+        top: 37%;
+        left: 35%;
+      }
+    }
+    &__heading {
+      &--h1 {
+        font-size: 1.7rem;
+        margin-bottom: 0.8rem;
+      }
+
+      &--h2 {
+        font-size: 0.95rem;
+        max-width: unset;
+      }
+    }
+  }
+}

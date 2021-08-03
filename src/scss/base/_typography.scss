@@ -1,7 +1,24 @@
+@use "../abstracts/variables";
 /*------------------------------*\
     #typography
 \*------------------------------*/
 
 html {
   font-size: 100%;
+}
+
+body {
+  font-family: variables.$Font-Primary;
+}
+
+.heading {
+  &--xs {
+    font-size: 1.2rem;
+  }
+
+  &--xxs {
+    font-size: 0.9rem;
+    color: blue;
+    background-color: red;
+  }
 }

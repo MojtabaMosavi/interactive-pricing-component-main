@@ -1,11 +1,18 @@
+@use "../abstracts" as abs;
+
 /*------------------------------*\
     #helpers 
 \*------------------------------*/
 
 // general container to align the content
 .container {
-  max-width: 33rem;
-  padding: 0 1.5rem;
+  max-width: 21rem;
+  margin: 0 auto;
+  padding: 0 1.55rem;
+
+  @include abs.respond-to("tablet") {
+    max-width: 33.8125rem;
+  }
 }
 
 // show the content only to screen reader

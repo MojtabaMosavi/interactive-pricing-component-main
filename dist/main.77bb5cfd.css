@@ -1,0 +1,411 @@
+@charset "UTF-8";
+/*------------------------------*\
+    #variables
+\*------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&display=swap");
+:root {
+  --Full-Slider-Bar: hsl(174, 77%, 80%);
+  --Slider-Backround: hsl(174, 86%, 45%);
+  --Discount-Background: hsl(14, 92%, 95%);
+  --Discount-Text: hsl(15, 100%, 70%);
+  --CTA-Text: hsl(226, 100%, 87%);
+  --White: hsl (0, 0%, 100%);
+  --Main-Background: hsl(230, 100%, 99%);
+  --Empty-Slider-Bar: hsl(224, 65%, 95%);
+  --Toggle-Background: hsl(223, 50%, 87%);
+  --Text: hsl(225, 20%, 60%);
+  --Text-CTA-Background: hsl(227, 35%, 25%);
+}
+
+/*------------------------------*\
+    #mixins 
+\*------------------------------*/
+/*------------------------------*\
+    #helpers 
+\*------------------------------*/
+.container {
+  max-width: 21rem;
+  margin: 0 auto;
+  padding: 0 1.55rem;
+}
+@media screen and (min-width: 43em) {
+  .container {
+    max-width: 33.8125rem;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  left: -9999px;
+  height: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.hide {
+  display: none;
+}
+
+/*------------------------------*\
+    #resets
+\*------------------------------*/
+/*|| general styles */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/*|| resetting the default styles for link states*/
+a,
+a:visited,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+}
+
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/*|| reset the default styles on focus state but not when tabbed */
+button,
+a {
+  cursor: pointer;
+}
+button:focus,
+a:focus {
+  outline: max(1, 0.1em) solid;
+  outline-offset: -0.25em;
+}
+button:not(:focus-visible),
+a:not(:focus-visible) {
+  outline: none;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: max(1, 0.1em) solid;
+  outline-offset: -0.25em;
+}
+
+/*|| Remove all animations and transitions
+for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  *,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/*------------------------------*\
+    #typography
+\*------------------------------*/
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+}
+
+.heading--xs {
+  font-size: 1.2rem;
+}
+.heading--xxs {
+  font-size: 0.9rem;
+  color: blue;
+  background-color: red;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+  display: block;
+}
+
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+[hidden],
+template {
+  display: none;
+}
+
+html {
+  background: #fff;
+  color: #000;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+html,
+button,
+input,
+select,
+textarea {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  background: transparent;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:hover, a:active {
+  outline: 0;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+dfn {
+  font-style: italic;
+}
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+q {
+  quotes: "“" "”" "‘" "’";
+}
+
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+img {
+  border: 0;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+figure {
+  margin: 0;
+}
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+  white-space: normal;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+}
+
+button,
+input {
+  line-height: normal;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type=button],
+input[type=reset],
+input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button[disabled],
+input[disabled] {
+  cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input[type=search] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/*------------------------------*\
+    #header 
+\*------------------------------*/
+.header {
+  position: relative;
+  /*------------------------------*\
+    #header tablet 
+  \*------------------------------*/
+}
+.header__headings {
+  padding-top: 5.5rem;
+}
+.header__headings::after {
+  content: url("/pattern-circles.df184acf.svg");
+  position: absolute;
+  top: 34%;
+  left: 25%;
+}
+.header__heading {
+  z-index: 2;
+  position: relative;
+}
+.header__heading--h1 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.025rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.header__heading--h2 {
+  font-size: 0.81rem;
+  font-weight: 300;
+  text-align: center;
+  max-width: 11rem;
+  margin: 0 auto;
+  line-height: 1.4rem;
+}
+@media screen and (min-width: 43em) {
+  .header__headings {
+    padding-top: 6.3rem;
+  }
+  .header__headings::after {
+    top: 37%;
+    left: 35%;
+  }
+  .header__heading--h1 {
+    font-size: 1.7rem;
+    margin-bottom: 0.8rem;
+  }
+  .header__heading--h2 {
+    font-size: 0.95rem;
+    max-width: unset;
+  }
+}
+
+/*------------------------------*\
+    #main
+\*------------------------------*/
+body {
+  background: url("/bg-pattern.119a1a19.svg") top/100% 52% no-repeat;
+}
+
+/*# sourceMappingURL=/main.77bb5cfd.css.map */
