@@ -9,7 +9,7 @@
   --Discount-Background: hsl(14, 92%, 95%);
   --Discount-Text: hsl(15, 100%, 70%);
   --CTA-Text: hsl(226, 100%, 87%);
-  --White: hsl (0, 0%, 100%);
+  --White: hsl(0, 0%, 100%);
   --Main-Background: hsl(230, 100%, 99%);
   --Empty-Slider-Bar: hsl(224, 65%, 95%);
   --Toggle-Background: hsl(223, 50%, 87%);
@@ -24,9 +24,9 @@
     #helpers 
 \*------------------------------*/
 .container {
-  max-width: 21rem;
+  max-width: 20.5rem;
   margin: 0 auto;
-  padding: 0 1.55rem;
+  padding: 0 1.4rem;
 }
 @media screen and (min-width: 43em) {
   .container {
@@ -128,6 +128,7 @@ html {
 
 body {
   font-family: "Manrope", sans-serif;
+  color: var(--Text);
 }
 
 .heading--xs {
@@ -347,6 +348,232 @@ input[type=checkbox], input[type=radio] {
 }
 
 /*------------------------------*\
+    #card 
+\*------------------------------*/
+.card {
+  background-color: var(--White);
+  transition: all 300ms ease-in-out;
+  border-radius: 1rem;
+  /*------------------------------*\
+    #card tablet 
+  \*------------------------------*/
+}
+.card__header {
+  padding-top: 1.9rem;
+  text-align: center;
+  margin-bottom: 2.3rem;
+}
+.card__heading {
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  margin-bottom: 1.85rem;
+}
+.card__slider {
+  width: 100%;
+  max-width: 28rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.card__slider-value {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 0.4rem;
+  cursor: pointer;
+}
+.card__slider-value::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 5rem;
+  background: url("/icon-slider.9e58857d.svg") no-repeat center, var(--Slider-Backround);
+  position: relative;
+  z-index: 10;
+  outline: none;
+  box-shadow: 0px 10xp 10px 10px black;
+}
+.card__slider-value::-webkit-slider-thumb:hover:active {
+  cursor: grab;
+  filter: brightness(80%);
+}
+.card__slider-value::-webkit-slider-thumb:hover {
+  cursor: pointer;
+  filter: brightness(200%);
+}
+.card__slider-value::-moz-range-thumb {
+  width: 2rem;
+  height: 2rem;
+  outline: none;
+}
+.card__slider-bar, .card__slider-bar-inner {
+  width: 100%;
+  height: 0.4rem;
+  position: absolute;
+  left: 0;
+  top: 12px;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: var(--Empty-Slider-Bar);
+}
+.card__slider-bar-inner {
+  width: 50%;
+  top: 0;
+  background-color: var(--Full-Slider-Bar);
+}
+.card__pricing {
+  font-size: 0.87rem;
+}
+.card__pricing-digit {
+  font-size: 2rem;
+  margin-right: 0.5rem;
+  color: var(--Text-CTA-Background);
+  font-weight: 800;
+}
+.card__body {
+  padding-left: 0.8rem;
+  padding-left: 1.5rem;
+}
+.card__toggle {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.card__toggle-wrapper {
+  width: 2.7rem;
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.4rem;
+  position: relative;
+  margin-left: 0.3rem;
+}
+.card__toggle-input {
+  display: inline-block;
+  margin-right: -2px;
+  width: 50%;
+  height: 100%;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+.card__toggle-input:focus ~ .card__toggle-switcher {
+  border: 3px solid #a1456e;
+  top: -2px;
+}
+.card__toggle #monthlyBiling:checked ~ .card__toggle-switch, .card__toggle #monthlyBiling:checked ~ .card__toggle-switch--active {
+  right: 0;
+  left: 50%;
+}
+.card__toggle-background, .card__toggle-background--active {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: var(--Toggle-Background);
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.card__toggle-background:hover, .card__toggle-background--active:hover {
+  background-color: var(--Full-Slider-Bar);
+}
+.card__toggle-background--active {
+  background-color: var(--Full-Slider-Bar);
+}
+.card__toggle-switch, .card__toggle-switch--active {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 100%;
+  z-index: 2;
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: var(--White);
+  border-radius: 50%;
+  margin-left: 0.7rem;
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%, -50%);
+}
+.card__toggle-switch--active {
+  left: 50%;
+  right: 0;
+}
+.card__toggle-title {
+  font-size: 0.8rem;
+}
+.card__toggle-discount, .card__toggle-discount--mobile, .card__toggle-discount--desktop {
+  font-size: 0.8rem;
+  font-size: 0.8rem;
+  padding-left: 0.2rem;
+  background-color: var(--Discount-Background);
+  border-radius: 1rem;
+  color: var(--Discount-Text);
+}
+.card__toggle-discount--desktop {
+  display: none;
+}
+@media screen and (min-width: 43em) {
+  .card__header {
+    padding-top: 2.9rem;
+    display: grid;
+    grid-template: [row1-start] "heading pricing" auto [row1-end] [row2-start] "slider slider" 1fr [row2-end]/1fr 1fr;
+    grid-gap: 0.9rem 0;
+    align-items: center;
+  }
+  .card__heading {
+    grid-area: heading;
+    text-align: left;
+    margin-left: 1.5rem;
+    word-spacing: 1rem;
+    margin-top: 0.8rem;
+  }
+  .card__heading-text {
+    letter-spacing: 0.1rem;
+    margin-left: -0.5rem;
+  }
+  .card__pricing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    grid-area: pricing;
+  }
+  .card__pricing-digit {
+    font-size: 2.3rem;
+  }
+  .card__pricing-interval {
+    font-size: 1rem;
+  }
+  .card__slider {
+    grid-area: slider;
+    margin: 0 auto;
+  }
+  .card__header {
+    margin-bottom: 3.2rem;
+  }
+  .card__body {
+    padding-left: 8rem;
+  }
+  .card__toggle-wrapper {
+    margin-left: 0.6rem;
+  }
+  .card__toggle-discount--desktop {
+    display: inline-block;
+    padding: 0.4rem;
+    font-size: 0.6rem;
+  }
+  .card__toggle-discount--mobile {
+    display: none;
+  }
+  .card__toggle-title--right {
+    padding-left: 1rem;
+  }
+}
+
+/*------------------------------*\
     #header 
 \*------------------------------*/
 .header {
@@ -356,7 +583,7 @@ input[type=checkbox], input[type=radio] {
   \*------------------------------*/
 }
 .header__headings {
-  padding-top: 5.5rem;
+  padding-top: 5.6rem;
 }
 .header__headings::after {
   content: url("/pattern-circles.df184acf.svg");
@@ -373,7 +600,8 @@ input[type=checkbox], input[type=radio] {
   font-weight: 800;
   letter-spacing: 0.025rem;
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
+  color: var(--Text-CTA-Background);
 }
 .header__heading--h2 {
   font-size: 0.81rem;
@@ -406,6 +634,20 @@ input[type=checkbox], input[type=radio] {
 \*------------------------------*/
 body {
   background: url("/bg-pattern.119a1a19.svg") top/100% 52% no-repeat;
+}
+
+.main {
+  /*------------------------------*\
+      #main tablet 
+  \*------------------------------*/
+}
+.main-wrapper {
+  margin-bottom: 4rem;
+}
+@media screen and (min-width: 43em) {
+  .main-wrapper {
+    margin-bottom: 5.7rem;
+  }
 }
 
 /*# sourceMappingURL=/main.77bb5cfd.css.map */

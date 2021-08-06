@@ -8,7 +8,7 @@
   position: relative;
 
   &__headings {
-    padding-top: 5.5rem;
+    padding-top: 5.6rem;
 
     &::after {
       content: url("../assets/images/pattern-circles.svg");
@@ -27,7 +27,8 @@
       font-weight: 800;
       letter-spacing: 0.025rem;
       text-align: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.7rem;
+      color: var(--Text-CTA-Background);
     }
 
     &--h2 {

@@ -10,5 +10,15 @@ body {
 
 .main {
   &-wrapper {
+    margin-bottom: 4rem;
+  }
+
+  /*------------------------------*\
+    #main tablet 
+\*------------------------------*/
+  @include abs.respond-to("tablet") {
+    &-wrapper {
+      margin-bottom: 5.7rem;
+    }
   }
 }

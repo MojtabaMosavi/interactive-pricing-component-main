@@ -5,12 +5,286 @@
 \*------------------------------*/
 
 .card {
+  background-color: var(--White);
+  transition: abs.$Transition-Primary;
+  border-radius: 1rem;
+
   &__header {
+    padding-top: 1.9rem;
+    text-align: center;
+    margin-bottom: 2.3rem;
+  }
+
+  &__heading {
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    margin-bottom: 1.85rem;
+  }
+
+  &__slider {
+    width: 100%;
+    max-width: 28rem;
+    margin-bottom: 2rem;
+
+    position: relative;
+    &-value {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 0.4rem;
+      cursor: pointer;
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 5rem;
+        background: url("../assets/images/icon-slider.svg") no-repeat center,
+          var(--Slider-Backround);
+        position: relative;
+        z-index: 10;
+        outline: none;
+        box-shadow: 0px 10xp 10px 10px black;
+
+        &:hover:active {
+          cursor: grab;
+          filter: brightness(80%);
+        }
+
+        &:hover {
+          cursor: pointer;
+          filter: brightness(200%);
+        }
+      }
+
+      &::-moz-range-thumb {
+        width: 2rem;
+        height: 2rem;
+        outline: none;
+      }
+    }
+
+    // slider bar
+    &-bar {
+      width: 100%;
+      height: 0.4rem;
+      position: absolute;
+      left: 0;
+      top: 12px;
+      border-radius: 1rem;
+      overflow: hidden;
+      background-color: var(--Empty-Slider-Bar);
+
+      &-inner {
+        @extend .card__slider-bar;
+        width: 50%;
+        top: 0;
+        background-color: var(--Full-Slider-Bar);
+      }
+    }
+  }
+
+  &__pricing {
+    font-size: 0.87rem;
+
+    &-digit {
+      font-size: 2rem;
+      margin-right: 0.5rem;
+      color: var(--Text-CTA-Background);
+      font-weight: 800;
+    }
+
+    &-interval {
+    }
   }
 
   &__body {
+    padding-left: 0.8rem;
+    padding-left: 1.5rem;
+  }
+
+  &__toggle {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    &-wrapper {
+      width: 2.7rem;
+      display: inline-block;
+      vertical-align: middle;
+      height: 1.4rem;
+      position: relative;
+      margin-left: 0.3rem;
+    }
+
+    &-input {
+      display: inline-block;
+      margin-right: -2px;
+      width: 50%;
+      height: 100%;
+      opacity: 0;
+      position: relative;
+      z-index: 1;
+      cursor: pointer;
+
+      &:focus ~ .card__toggle-switcher {
+        border: 3px solid hsla(333, 40%, 45%, 1);
+        top: -2px;
+      }
+    }
+
+    #monthlyBiling:checked ~ .card__toggle-switch {
+      right: 0;
+      left: 50%;
+    }
+
+    #monthlyBiling:checked ~ .card__toggle-background {
+    }
+
+    &-background {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background-color: var(--Toggle-Background);
+      border-radius: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--Full-Slider-Bar);
+      }
+
+      &--active {
+        @extend .card__toggle-background;
+        background-color: var(--Full-Slider-Bar);
+      }
+    }
+
+    &-switch {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 100%;
+      z-index: 2;
+      width: 0.8rem;
+      height: 0.8rem;
+      background-color: var(--White);
+      border-radius: 50%;
+      margin-left: 0.7rem;
+      transition: all 300ms ease-in-out;
+      transform: translate(-50%, -50%);
+
+      &--active {
+        @extend .card__toggle-switch;
+        left: 50%;
+        right: 0;
+      }
+    }
+
+    &-title {
+      font-size: 0.8rem;
+    }
+
+    &-discount {
+      font-size: 0.8rem;
+      font-size: 0.8rem;
+      padding-left: 0.2rem;
+      background-color: var(--Discount-Background);
+      border-radius: 1rem;
+      color: var(--Discount-Text);
+
+      &--desktop {
+        @extend .card__toggle-discount;
+        display: none;
+      }
+
+      &--mobile {
+        @extend .card__toggle-discount;
+      }
+    }
   }
 
   &__footer {
+  }
+
+  /*------------------------------*\
+    #card tablet 
+  \*------------------------------*/
+
+  @include abs.respond-to("tablet") {
+    &__header {
+      padding-top: 2.9rem;
+      display: grid;
+      grid-template:
+        [row1-start] "heading pricing" auto [row1-end]
+        [row2-start] "slider slider" 1fr [row2-end]
+        / 1fr 1fr;
+      grid-gap: 0.9rem 0;
+      align-items: center;
+    }
+
+    &__heading {
+      grid-area: heading;
+      text-align: left;
+      margin-left: 1.5rem;
+      word-spacing: 1rem;
+      margin-top: 0.8rem;
+
+      &-text {
+        letter-spacing: 0.1rem;
+        margin-left: -0.5rem;
+      }
+    }
+
+    &__pricing {
+      @include abs.flexify($js-con: center);
+      margin-bottom: 1rem;
+      grid-area: pricing;
+
+      &-digit {
+        font-size: 2.3rem;
+      }
+
+      &-interval {
+        font-size: 1rem;
+      }
+    }
+
+    &__slider {
+      grid-area: slider;
+
+      margin: 0 auto;
+    }
+    &__header {
+      margin-bottom: 3.2rem;
+    }
+
+    &__body {
+      padding-left: 8rem;
+    }
+    &__toggle-wrapper {
+      margin-left: 0.6rem;
+    }
+
+    &__toggle-discount {
+      &--desktop {
+        display: inline-block;
+        padding: 0.4rem;
+        font-size: 0.6rem;
+      }
+
+      &--mobile {
+        display: none;
+      }
+    }
+
+    &__toggle-title {
+      &--right {
+        padding-left: 1rem;
+      }
+    }
   }
 }
