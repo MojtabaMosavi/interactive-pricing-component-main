@@ -8,6 +8,8 @@
   background-color: var(--White);
   transition: abs.$Transition-Primary;
   border-radius: 1rem;
+  margin-bottom: 5rem;
+  box-shadow: 0 0 1rem;
 
   &__header {
     padding-top: 1.9rem;
@@ -27,11 +29,13 @@
     margin-bottom: 2rem;
 
     position: relative;
-    &-value {
+    &-input {
       -webkit-appearance: none;
       width: 100%;
-      height: 0.4rem;
+      height: 0.001rem;
       cursor: pointer;
+      position: relative;
+      z-index: 2;
 
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -57,9 +61,12 @@
       }
 
       &::-moz-range-thumb {
-        width: 2rem;
-        height: 2rem;
-        outline: none;
+        border: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 5rem;
+        background: url("../assets/images/icon-slider.svg") no-repeat center,
+          var(--Slider-Backround);
       }
     }
 
@@ -69,14 +76,14 @@
       height: 0.4rem;
       position: absolute;
       left: 0;
-      top: 12px;
+      top: 0.8rem;
       border-radius: 1rem;
       overflow: hidden;
       background-color: var(--Empty-Slider-Bar);
 
       &-inner {
         @extend .card__slider-bar;
-        width: 50%;
+        width: 30%;
         top: 0;
         background-color: var(--Full-Slider-Bar);
       }
@@ -92,14 +99,12 @@
       color: var(--Text-CTA-Background);
       font-weight: 800;
     }
-
-    &-interval {
-    }
   }
 
   &__body {
     padding-left: 0.8rem;
     padding-left: 1.5rem;
+    margin-bottom: 3.7rem;
   }
 
   &__toggle {
@@ -123,21 +128,8 @@
       height: 100%;
       opacity: 0;
       position: relative;
-      z-index: 1;
+      z-index: 2;
       cursor: pointer;
-
-      &:focus ~ .card__toggle-switcher {
-        border: 3px solid hsla(333, 40%, 45%, 1);
-        top: -2px;
-      }
-    }
-
-    #monthlyBiling:checked ~ .card__toggle-switch {
-      right: 0;
-      left: 50%;
-    }
-
-    #monthlyBiling:checked ~ .card__toggle-background {
     }
 
     &-background {
@@ -147,11 +139,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 2;
       background-color: var(--Toggle-Background);
       border-radius: 1rem;
       cursor: pointer;
-
       &:hover {
         background-color: var(--Full-Slider-Bar);
       }
@@ -186,6 +176,7 @@
 
     &-title {
       font-size: 0.8rem;
+      cursor: pointer;
     }
 
     &-discount {
@@ -208,6 +199,35 @@
   }
 
   &__footer {
+    text-align: center;
+    padding-bottom: 2rem;
+
+    &-features {
+      list-style: none;
+      font-size: 0.8rem;
+      line-height: 1.7rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &-feature {
+      &::before {
+        content: url("../assets/images/icon-check.svg");
+        margin-right: 1rem;
+      }
+    }
+
+    &-btn {
+      font-size: 0.8rem;
+      padding: 0.7rem 2.8rem;
+      background-color: var(--Text-CTA-Background);
+      border-radius: 2rem;
+      color: var(--CTA-Text);
+      max-width: 11rem;
+
+      &:hover {
+        color: var(--White);
+      }
+    }
   }
 
   /*------------------------------*\
@@ -264,26 +284,41 @@
 
     &__body {
       padding-left: 8rem;
+      margin-bottom: 4rem;
     }
-    &__toggle-wrapper {
-      margin-left: 0.6rem;
-    }
+    &__toggle {
+      &-wrapper {
+        margin-left: 0.6rem;
+      }
 
-    &__toggle-discount {
-      &--desktop {
+      &-discount {
         display: inline-block;
         padding: 0.4rem;
         font-size: 0.6rem;
+        &--mobile {
+          display: none;
+        }
       }
 
-      &--mobile {
-        display: none;
+      &-title {
+        &--right {
+          padding-left: 1rem;
+        }
       }
     }
 
-    &__toggle-title {
-      &--right {
-        padding-left: 1rem;
+    &__footer {
+      text-align: left;
+      &-wrapper {
+        display: grid;
+        grid: 1fr / 1fr 1fr;
+        align-items: center;
+        grid-gap: 6.5rem;
+      }
+
+      &-features {
+        margin-left: 1.6rem;
+        margin-bottom: 0;
       }
     }
   }

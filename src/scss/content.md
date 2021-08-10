@@ -7,4 +7,6 @@
 - Components.......... Contains discrete piece of style that are reusable.
 -
 - Layout.......... Contains general layout sections such as header and main.
-- \*/
+-
+- Vendors.......... Thirs party plugins,linke css normalize.
+  \*/

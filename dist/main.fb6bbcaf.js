@@ -117,9 +117,199 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/main.js":[function(require,module,exports) {
-console.log("hello");
-},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"js/PricingComponent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var PricingComponent = /*#__PURE__*/function () {
+  function PricingComponent() {
+    _classCallCheck(this, PricingComponent);
+
+    // dom caching 
+    this.app = document.querySelector(".card");
+    this.numberOfViews = this.app.querySelector(".card__heading-digit");
+    this.price = this.app.querySelector(".card__pricing-digit");
+    this.pricingMode = this.app.querySelector(".card__heading-interval");
+    this.sliderInput = this.app.querySelector(".card__slider-input");
+    this.sliderBar = this.app.querySelector(".card__slider-bar");
+    this.sliderBarBg = this.app.querySelector(".card__slider-bar-inner");
+    this.toggleBg = this.app.querySelector(".card__toggle-background"); // toggle 
+
+    this.toggleInputRight = this.app.querySelector(".card__toggle-input--right");
+    this.toggleInputLeft = this.app.querySelector(".card__toggle-input--left");
+    this.toggleSwitch = this.app.querySelector(".card__toggle-switch");
+    this.toggleRightLabel = this.app.querySelector(".card__toggle-title--right");
+    this.toggleLeftLabel = this.app.querySelector(".card__toggle-title--left"); // booleans
+
+    this.yearlyBilling = false; //render 
+
+    this.render();
+  } // binding events 
+
+
+  _createClass(PricingComponent, [{
+    key: "bindEventListner",
+    value: function bindEventListner() {
+      var _this = this;
+
+      // slider related events 
+      this.sliderInput.addEventListener("change", function (event) {
+        _this.updateSlider(event);
+
+        console.log(event);
+      }); // toggle functionality 
+
+      this.toggleInputLeft.addEventListener("click", function () {
+        _this.toggleLeft();
+
+        _this.updatePrice(_this.fliterPriceInput());
+      });
+      this.toggleInputRight.addEventListener("click", function () {
+        _this.toggleRight();
+
+        _this.updatePrice(_this.fliterPriceInput());
+      });
+    } // render 
+
+  }, {
+    key: "render",
+    value: function render() {
+      this.bindEventListner();
+    } // updating the slider  
+
+  }, {
+    key: "updateSlider",
+    value: function updateSlider(event) {
+      var value = this.sliderInput.value;
+      this.sliderInput.setAttribute("value", value);
+      this.updateRangeBg();
+      this.updatePrice(this.fliterPriceInput());
+      this.updatePageView(this.adjustNumberOfviews(this.fliterPriceInput()));
+    } // toggling 
+
+  }, {
+    key: "toggleLeft",
+    value: function toggleLeft() {
+      this.yearlyBilling = false;
+      this.toggleSwitch.classList.remove("card__toggle-switch--active");
+      this.toggleLeftLabel.classList.add("underline");
+      this.toggleRightLabel.classList.remove("underline");
+      this.toggleBg.classList.remove("card__toggle-background--active");
+    }
+  }, {
+    key: "toggleRight",
+    value: function toggleRight() {
+      this.yearlyBilling = true;
+      this.toggleSwitch.classList.add("card__toggle-switch--active");
+      this.toggleRightLabel.classList.add("underline");
+      this.toggleLeftLabel.classList.remove("underline");
+      this.toggleBg.classList.add("card__toggle-background--active");
+    } // update range backgorund 
+
+  }, {
+    key: "updateRangeBg",
+    value: function updateRangeBg() {
+      this.sliderBarBg.style.width = "".concat((this.sliderInput.value - 8) / (36 - 8) * 100, "%");
+    } // adjusting the number of views 
+
+  }, {
+    key: "adjustNumberOfviews",
+    value: function adjustNumberOfviews(value) {
+      switch (parseInt(value)) {
+        case 8:
+          return 10;
+
+        case 12:
+          return 50;
+
+        case 16:
+          return 100;
+
+        case 20:
+          return 500;
+
+        case 24:
+          return 500;
+
+        case 28:
+          return 1000;
+
+        case 32:
+          return 1000;
+
+        case 36:
+          return 1000;
+
+        default:
+          throw Error("No mach was found for the value ".concat(value));
+      }
+    } // filter the values of the range input to match the custom format
+
+  }, {
+    key: "fliterPriceInput",
+    value: function fliterPriceInput() {
+      var rangeValue = parseInt((this.sliderInput.value - 8) / (36 - 8) * 100);
+
+      if (0 < rangeValue && rangeValue < 10) {
+        return 8;
+      } else if (10 <= rangeValue && rangeValue <= 20) {
+        return 12;
+      } else if (20 <= rangeValue && rangeValue <= 30) {
+        return 16;
+      } else if (30 <= rangeValue && rangeValue <= 60) {
+        return 24;
+      } else if (60 <= rangeValue && rangeValue <= 100) {
+        return 36;
+      } else {
+        throw Error("value ".concat(rangeValue, " is not supported."));
+      }
+    } // set pageview
+
+  }, {
+    key: "updatePageView",
+    value: function updatePageView() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var prefix;
+      value >= 1000 ? (prefix = "M", value /= 1000) : prefix = 'K';
+      value ? this.numberOfViews.textContent = "".concat(value + prefix) : "";
+    } // set price
+
+  }, {
+    key: "updatePrice",
+    value: function updatePrice() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      this.yearlyBilling ? value *= 0.75 : "";
+      value ? this.price.textContent = "$".concat(value, ".00") : "";
+    }
+  }]);
+
+  return PricingComponent;
+}();
+
+exports.default = PricingComponent;
+},{}],"js/main.js":[function(require,module,exports) {
+"use strict";
+
+var _PricingComponent = _interopRequireDefault(require("./PricingComponent"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var pricingComponent = new _PricingComponent.default();
+  });
+}();
+},{"./PricingComponent":"js/PricingComponent.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -147,7 +337,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50764" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54355" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

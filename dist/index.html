@@ -39,7 +39,7 @@
           </h2>
           
           <div class="card__slider">
-            <input type="range" class="card__slider-value" min="0" max="36" value="16">
+            <input type="range" class="card__slider-input" min="8" max="36" value="16">
             <span class="card__slider-bar">
               <span class="card__slider-bar-inner"></span>
             </span>
@@ -53,13 +53,17 @@
 
         <!-- user can't be missled that she submits data-->
         <div class="card__body">
-          <fieldset class="card__toggle">
+          <fieldset class="card__toggle" tabindex="0">
+            <legend class="sr-only"> Chose purchase plan</legend>
             <label for="monthlyBiling" class="card__toggle-title card__toggle-title--left">
               Monthly Billing
             </label>
+
             <span class="card__toggle-wrapper">
-              <input class="card__toggle-input" type="radio" name="purchse-plan" id="monthlyBiling" draggable="false" checked="">
-              <input class="card__toggle-input" type="radio" name="purchse-plan" draggable="false" id="yearlyBilling">
+              <input class="card__toggle-input card__toggle-input--left" type="radio" name="purchase-plan" id="monthlyBiling">
+                      
+              <input class="card__toggle-input card__toggle-input--right" type="radio" name="purchase-plan" draggable="false" id="yearlyBilling">
+
               <span class="card__toggle-background"></span>
               <span class="card__toggle-switch"></span>
             </span>
@@ -71,7 +75,16 @@
           </fieldset>
         </div>
 
-        <div class="card__footer"></div>
+        <div class="card__footer">
+          <div class="card__footer-wrapper">
+            <ul class="card__footer-features">
+              <li class="card__footer-feature">  Unlimited websites</li>
+              <li class="card__footer-feature">  100% data ownership</li>
+              <li class="card__footer-feature">  Email reports</li>
+            </ul>
+            <a href="/" tabindex="0" class="card__footer-btn btn">  Start my trial</a>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -80,11 +93,7 @@
   $ /month
 
 
-  Unlimited websites
-  100% data ownership
-  Email reports
 
-  Start my trial
   -->
 </body>
 </html>
