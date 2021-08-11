@@ -24,7 +24,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://interactive-pricing-component-123.netlify.app/)
+- Live Site URL: [https://interactive-pricing-component-123.netlify.app/](https://interactive-pricing-component-123.netlify.app/)
 
 ## My process
 
